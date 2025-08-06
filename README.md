@@ -72,6 +72,12 @@ In particular:
 
 - Highlight when yanking.
 
+- Disable features in big files:
+    - Disable treesitter and LSP if filesize is bigger than 1MB.
+    - Disable all syntax highlighting is filesize is bigger than 10MB.
+
+- Help windows open in vertical.
+
 `options.lua` sets my preferred defaults:
 
 - Show numbers (relative) and have them fixed (no LSP/git movement).
