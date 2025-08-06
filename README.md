@@ -19,12 +19,14 @@ Heavily inspired by [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
 - (optional) `fd` [[INSTALL](https://github.com/sharkdp/fd?tab=readme-ov-file#installation)]
 
+- (optional) `fzf` [[INSTALL](https://github.com/junegunn/fzf?tab=readme-ov-file#installation)]
+
 - (optional) A Nerd Font. If not installed then set `vim.g.have_nerd_font = false` in `init.lua`.
 
 ### Arch requisites install (not the font)
 
 ```sh
-sudo pacman -S git neovim rust npm tree-sitter-cli ripgrep fd
+sudo pacman -S git neovim rust npm tree-sitter-cli ripgrep fd fzf
 ```
 
 ## Installing
