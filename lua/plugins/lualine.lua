@@ -12,7 +12,10 @@ return {
         ignore_focus = {},
       },
       sections = {
-        lualine_a = { 'mode' },
+        lualine_a = { function ()
+          local mode = require('lualine.utils.mode').get_mode()
+          return string.sub(mode, 1, 1)
+        end },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
         lualine_c = { 'filename' },
         lualine_x = { 'filetype', 'encoding' },
