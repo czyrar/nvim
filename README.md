@@ -115,13 +115,15 @@ a description of what each plugin does:
 
 - [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim): good LSP for Neovim configuration files.
 
-- [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig): allow attachment to LSP servers.
-
 - [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim): status bar with style similar to [`echasnovski/mini.statusline`](https://github.com/echasnovski/mini.statusline).
+
+- [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig): allow attachment to LSP servers.
 
 - [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround): allows for surrounding operations.
 
 - [`akinsho/nvim-toggleterm.lua`](https://github.com/akinsho/nvim-toggleterm.lua): simple terminal split with REPL-like functionality.
+
+- [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim): edit filetrees as if they were a simple file.
 
 - [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim): render markdown in normal mode.
 
