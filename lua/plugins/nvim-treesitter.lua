@@ -35,6 +35,11 @@ return {
   },
   { -- Add context
     'nvim-treesitter/nvim-treesitter-context',
+    config = function()
+      vim.keymap.set("n", "[c", function()
+        require("treesitter-context").go_to_context(vim.v.count1)
+      end, { desc = '[G]oto [C]ontext', silent = true })
+    end
   },
   { -- Surrounds for [f]unction, [C]lass, [l]oop, [c]onditional
     'nvim-treesitter/nvim-treesitter-textobjects',

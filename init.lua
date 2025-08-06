@@ -8,7 +8,8 @@ vim.g.maplocalleader = '\\'
 -- Mappings
 require('keymaps')
 
--- Options require('options')
+-- Options
+require('options')
 
 -- Autocmds
 require('autocmds')
