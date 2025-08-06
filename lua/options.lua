@@ -3,7 +3,7 @@ local set = vim.opt
 -- Make line numbers default
 set.number = true
 set.relativenumber = true
-set.signcolumn = 'yes'
+set.signcolumn = 'yes:2'
 
 -- No wrap at the end of the screen
 set.wrap = false
