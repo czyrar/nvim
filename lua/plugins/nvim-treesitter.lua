@@ -7,6 +7,31 @@ return {
     'nvim-treesitter/nvim-treesitter',
     branch = 'main',
     build = ':TSUpdate',
+    lazy = false,
+    config = function()
+      -- Ensure we have for the documentation
+      local treesitter = require('nvim-treesitter')
+      treesitter.install({ 'lua', 'luadoc' })
+
+      -- Auto install and start
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('my-treesitter-install', { clear = true }),
+        callback = function(args)
+          local buf = args.buf
+          local filetype = args.match
+          local language = vim.treesitter.language.get_lang(filetype) or filetype
+          if noinstall[language] then
+            return
+          end
+          treesitter.install(language)
+          if not vim.treesitter.language.add(language) then
+            return
+          end
+          vim.treesitter.start(buf, language)
+          vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+        end,
+      })
+    end,
   },
   { -- Add context
     'nvim-treesitter/nvim-treesitter-context',
@@ -39,31 +64,6 @@ return {
       vim.keymap.set({ 'x', 'o' }, 'ic', function()
         require 'nvim-treesitter-textobjects.select'.select_textobject('@condition.inner', 'textobjects')
       end)
-    end,
-  },
-  { -- Autoinstall, highlight and incremental selection
-    'MeanderingProgrammer/treesitter-modules.nvim',
-    config = function()
-      require('which-key').add({ 'gr', group = 'Code select', mode = 'v' })
-      require('treesitter-modules').setup {
-        ensure_installed = { 'lua' },
-        ignore_install = noinstall,
-        auto_install = true,
-        highlight = {
-          enable = true,
-          additional_vim_regex_highlighting = false,
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = false,
-            node_incremental = 'grn',
-            scope_incremental = 'grc',
-            node_decremental = 'grp',
-          },
-        },
-        indent = { enable = true },
-      }
     end,
   },
 }

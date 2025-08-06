@@ -104,7 +104,7 @@ In general all keymaps may be explored with `:Telescope keymaps`.
 
 ### plugins folder
 
-One file per plugin. In the correspondig file at the beginning there is
+One file per plugin with one exception (see below). In the correspondig file at the beginning there is
 a description of what each plugin does:
 
 - [`saghen/blink.cmp`](https://github.com/saghen/blink.cmp): provides autocompletion and snippets (through dependencies).
@@ -133,7 +133,9 @@ a description of what each plugin does:
 
 - [`folke/todo-comments.nvim`](https://github.com/folke/todo-comments.nvim): highlight important comments.
 
-- [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter): treesitter queries and highlight.
+- [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter): treesitter queries and highlight. Includes submodules:
+    - [`nvim-treesitter/nvim-treesitter-context`](https://github.com/nvim-treesitter/nvim-treesitter-context): provides context in the upper part of the screen.
+    - [`nvim-treesitter/nvim-treesitter-textobjects`](https://github.com/nvim-treesitter/nvim-treesitter-textobjects): provides textobjects for the language in buffer.
 
 - [`Wansmer/treesj`](https://github.com/Wansmer/treesj): wrap/unwrap nested code.
 
