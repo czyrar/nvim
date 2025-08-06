@@ -7,7 +7,7 @@ Heavily inspired by [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
 - `git`
 
-- `nvim` `v.0.11` or above [[INSTALL](https://github.com/neovim/neovim/blob/master/INSTALL.md)]
+- `nvim` `v.0.11.0` or above [[INSTALL](https://github.com/neovim/neovim/blob/master/INSTALL.md)]
 
 - `cargo` [[INSTALL](https://doc.rust-lang.org/stable/cargo/getting-started/installation.html)]
 
@@ -115,7 +115,7 @@ a description of what each plugin does:
 
 - [`saghen/blink.cmp`](https://github.com/saghen/blink.cmp): provides autocompletion and snippets (through dependencies).
 
-- [`numToStr/Comment.nvim`](https://github.com/numToStr/Comment.nvim): better toggle commands.
+- [`numToStr/Comment.nvim`](https://github.com/numToStr/Comment.nvim): better toggle comments.
 
 - [`lewis6991/gitsigns.nvim`](https://github.com/lewis6991/gitsigns.nvim): git integration and hunk navigation.
 
