@@ -19,7 +19,7 @@ return {
     --    function will be executed to configure the current buffer
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('my-lsp-attach', { clear = true }),
-      callback = function(event)
+      callback = function()
         local builtin = require('telescope.builtin')
         require('which-key').add {
           { 'gr',  group = 'LSP: [G]oto',                 mode = 'n' },
@@ -80,6 +80,10 @@ return {
     --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
     local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+    -- Bug with julials in Mason...
+    vim.lsp.config('julials', {})
+    vim.lsp.enable('julials')
+
     -- Enable the lua language server
     -- If custom configs for some server are needed add them as keys
     local servers = {
@@ -97,7 +101,7 @@ return {
           -- by the server configuration above. Useful when disabling
           -- certain features of an LSP (for example, turning off formatting for ts_ls)
           server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
+          vim.lsp.enable(server_name)
         end,
       },
     }
