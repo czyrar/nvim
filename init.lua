@@ -8,8 +8,7 @@ vim.g.maplocalleader = '\\'
 -- Mappings
 require('keymaps')
 
--- Options
-require('options')
+-- Options require('options')
 
 -- Autocmds
 require('autocmds')
@@ -33,27 +32,12 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugins
 require('lazy').setup({
+  install = { colorscheme = { 'tokyonight' } },
   spec = {
     { import = 'themes', priority = 1000, lazy = false },
     { import = 'plugins' },
   },
-  ui = {
-    icons = vim.g.have_nerd_font and {} or {
-      cmd = '⌘',
-      config = '🛠',
-      event = '📅',
-      ft = '📂',
-      init = '⚙',
-      keys = '🗝',
-      plugin = '🔌',
-      runtime = '💻',
-      require = '🌙',
-      source = '📄',
-      start = '🚀',
-      task = '📌',
-      lazy = '💤 ',
-    },
-  },
+  ui = { icons = vim.g.have_nerd_font and {} },
 })
 
 -- Set the theme
