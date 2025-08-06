@@ -3,7 +3,7 @@ vim.g.have_nerd_font = true
 
 -- Set <leader>
 vim.g.mapleader = ' '
-vim.g.maplocalleader = '\\'
+vim.g.maplocalleader = ' '
 
 -- Mappings
 require('keymaps')
