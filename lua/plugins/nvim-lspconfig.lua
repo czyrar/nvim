@@ -3,8 +3,9 @@ return {
   'neovim/nvim-lspconfig',
   dependencies = {
     -- Mason takes care of installation of servers
-    { 'mason-org/mason.nvim',           opts = {} },
+    { 'mason-org/mason.nvim', opts = {} },
     { 'mason-org/mason-lspconfig.nvim', opts = {} },
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
     -- Useful status updates for LSP.
     { 'j-hui/fidget.nvim', opts = {} },
     -- Allows extra capabilities provided by blink.cmp
@@ -19,19 +20,63 @@ return {
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('my-lsp-attach', { clear = true }),
       callback = function()
-        local builtin = require('telescope.builtin')
+        local builtin = require 'telescope.builtin'
         require('which-key').add {
-          { 'gr',  group = 'LSP: [G]oto',                 mode = 'n' },
-          { 'grn', vim.lsp.buf.rename,                    desc = 'LSP: [R]e[n]ame',               mode = 'n' },
-          { 'gra', vim.lsp.buf.code_action,               desc = 'LSP: [G]oto Code [A]ction',     mode = { 'n', 'x' } },
-          { 'grD', vim.lsp.buf.declaration,               desc = 'LSP: [G]oto [D]eclaration',     mode = 'n' },
-          { 'grr', builtin.lsp_references,                desc = 'LSP: [G]oto [R]eferences',      mode = 'n' },
-          { 'gri', builtin.lsp_implementations,           desc = 'LSP: [G]oto [I]mplementation',  mode = 'n' },
-          { 'grd', builtin.lsp_definitions,               desc = 'LSP: [G]oto [D]efinition',      mode = 'n' },
-          { 'grt', builtin.lsp_type_definitions,          desc = 'LSP: [G]oto [T]ype Definition', mode = 'n' },
-          { 'gO',  builtin.lsp_document_symbols,          desc = 'LSP: [O]pen Document Symbols',  mode = 'n' },
-          { 'gW',  builtin.lsp_dynamic_workspace_symbols, desc = 'LSP: Open [W]orkspace Symbols', mode = 'n' },
-          { '=f',  vim.lsp.buf.format,                    desc = 'LSP: [F]ormat file',            mode = 'n' },
+          { 'gr', group = 'LSP: [G]oto', mode = 'n' },
+          {
+            'grn',
+            vim.lsp.buf.rename,
+            desc = 'LSP: [R]e[n]ame',
+            mode = 'n',
+          },
+          {
+            'gra',
+            vim.lsp.buf.code_action,
+            desc = 'LSP: [G]oto Code [A]ction',
+            mode = { 'n', 'x' },
+          },
+          {
+            'grD',
+            vim.lsp.buf.declaration,
+            desc = 'LSP: [G]oto [D]eclaration',
+            mode = 'n',
+          },
+          {
+            'grr',
+            builtin.lsp_references,
+            desc = 'LSP: [G]oto [R]eferences',
+            mode = 'n',
+          },
+          {
+            'gri',
+            builtin.lsp_implementations,
+            desc = 'LSP: [G]oto [I]mplementation',
+            mode = 'n',
+          },
+          {
+            'grd',
+            builtin.lsp_definitions,
+            desc = 'LSP: [G]oto [D]efinition',
+            mode = 'n',
+          },
+          {
+            'grt',
+            builtin.lsp_type_definitions,
+            desc = 'LSP: [G]oto [T]ype Definition',
+            mode = 'n',
+          },
+          {
+            'gO',
+            builtin.lsp_document_symbols,
+            desc = 'LSP: [O]pen Document Symbols',
+            mode = 'n',
+          },
+          {
+            'gW',
+            builtin.lsp_dynamic_workspace_symbols,
+            desc = 'LSP: Open [W]orkspace Symbols',
+            mode = 'n',
+          },
         }
 
         -- Clean everything when done
@@ -39,9 +84,9 @@ return {
           group = vim.api.nvim_create_augroup('my-lsp-detach', { clear = true }),
           callback = function()
             vim.lsp.buf.clear_references()
-          end
+          end,
         })
-      end
+      end,
     })
 
     -- Diagnostic Config
@@ -78,16 +123,21 @@ return {
     --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
     --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
     local capabilities = require('blink.cmp').get_lsp_capabilities()
+    vim.lsp.config('*', { capabilities = capabilities })
 
     -- Bug with julials in Mason...
-    vim.lsp.config('julials', {})
-    vim.lsp.enable('julials')
+    vim.lsp.enable 'julials'
 
-    require('mason-lspconfig').setup {
-      -- Enable the lua language server
-      -- If custom configs for some server are needed add them as keys
-      ensure_installed = { 'lua_ls', 'stylua' },
-      automatic_installation = false,
-    }
+    -- Lua style for config
+    require('mason-tool-installer').setup { ensure_installed = { 'lua_ls', 'stylua' } }
+
+    -- Custom config servers
+    for server_name, server in pairs(require 'config.lsp') do
+      server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
+      vim.lsp.config(server_name, server)
+    end
+
+    -- Convenient keymap for Mason
+    vim.keymap.set('n', '<leader>m', '<cmd>Mason<CR>', { desc = 'Open [M]ason' })
   end,
 }

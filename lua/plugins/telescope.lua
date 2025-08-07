@@ -6,7 +6,7 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    { 'nvim-tree/nvim-web-devicons',              enabled = vim.g.have_nerd_font },
+    { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     'nvim-treesitter/nvim-treesitter',
     'folke/which-key.nvim',
   },
@@ -21,8 +21,8 @@ return {
         fzf = {},
       },
     }
-    require('telescope').load_extension('ui-select')   -- Modify aspects
-    require('telescope').load_extension('fzf')         -- Better search (fuzzy find)
+    require('telescope').load_extension 'ui-select' -- Modify aspects
+    require('telescope').load_extension 'fzf' -- Better search (fuzzy find)
 
     -- See `:help telescope.builtin`
     local builtin = require 'telescope.builtin'
@@ -37,12 +37,22 @@ return {
       { '<leader>sd', builtin.diagnostics, desc = '[S]earch [D]iagnostics', mode = 'n' },
       { '<leader>sr', builtin.resume, desc = '[S]earch [R]esume', mode = 'n' },
       { '<leader>s.', builtin.oldfiles, desc = '[S]earch Recent Files', mode = 'n' },
-      { '<leader>s/', function()
-      builtin.live_grep { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }
-    end, desc = '[S]earch in Open Files', mode = 'n' },
-      { '<leader>sn', function()
-      builtin.find_files { cwd = vim.fn.stdpath('config') }
-    end, desc = '[S]earch [N]eovim files', mode = 'n' },
+      {
+        '<leader>s/',
+        function()
+          builtin.live_grep { grep_open_files = true, prompt_title = 'Live Grep in Open Files' }
+        end,
+        desc = '[S]earch in Open Files',
+        mode = 'n',
+      },
+      {
+        '<leader>sn',
+        function()
+          builtin.find_files { cwd = vim.fn.stdpath 'config' }
+        end,
+        desc = '[S]earch [N]eovim files',
+        mode = 'n',
+      },
     }
 
     -- fzf all buffers
@@ -52,5 +62,5 @@ return {
     vim.keymap.set('n', '<leader>/', function()
       builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown { winblend = 10, previewer = false })
     end, { desc = 'Search in current buffer' })
-  end
+  end,
 }

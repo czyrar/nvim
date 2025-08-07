@@ -4,20 +4,20 @@ return {
   config = function()
     require('gitsigns').setup {
       on_attach = function(bufnr)
-        local gitsigns = require('gitsigns')
+        local gitsigns = require 'gitsigns'
         local function map(mode, l, r, opts)
           opts = opts or {}
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
-        require('which-key').add({ '<leader>g', group = '[G]it Hunk' })
+        require('which-key').add { '<leader>g', group = '[G]it Hunk' }
 
         -- Navigation
         map('n', ']h', function()
-          gitsigns.nav_hunk('next')
+          gitsigns.nav_hunk 'next'
         end, { desc = 'Previous Hunk' })
         map('n', '[h', function()
-          gitsigns.nav_hunk('prev')
+          gitsigns.nav_hunk 'prev'
         end, { desc = 'Next Hunk' })
 
         -- Actions
@@ -28,7 +28,7 @@ return {
 
         -- Text object
         map({ 'o', 'x' }, 'ih', gitsigns.select_hunk)
-      end
+      end,
     }
-  end
+  end,
 }

@@ -42,5 +42,9 @@ map('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Fix rounded borders not working with telescope
 map('n', 'K', function()
-  vim.lsp.buf.hover({ border = "rounded" })
+  vim.lsp.buf.hover { border = 'rounded' }
 end, { desc = 'Hover Documentation' })
+
+-- Execute lua for configs
+map('n', '<leader>x', ':.lua<CR>', { desc = 'E[x]ecute Lua line' })
+map('v', '<leader>x', ':lua<CR>', { desc = 'E[x]ecute Lua block' })

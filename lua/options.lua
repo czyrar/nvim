@@ -1,4 +1,4 @@
-local set = vim.opt
+local set = vim.o
 
 -- Make line numbers default
 set.number = true
@@ -27,7 +27,7 @@ set.smartcase = true
 
 -- Sets how neovim will display certain whitespace characters in the editor.
 set.list = true
-set.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 set.inccommand = 'split'

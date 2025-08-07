@@ -5,7 +5,7 @@ return {
   version = '1.*',
   dependencies = {
     {
-      'L3MON4D3/LuaSnip',   -- Snippet Engine
+      'L3MON4D3/LuaSnip', -- Snippet Engine
       version = 'v2.*',
       build = 'make install_jsregexp',
       dependencies = {
@@ -13,7 +13,7 @@ return {
           'rafamadriz/friendly-snippets',
           config = function()
             require('luasnip.loaders.from_vscode').lazy_load()
-          end
+          end,
         },
       },
       opts = {},
@@ -56,6 +56,6 @@ return {
     },
     snippets = { preset = 'luasnip' },
     fuzzy = { implementation = 'prefer_rust_with_warning' },
-    signature = { enabled = true },   -- Shows a signature help window while you type arguments for a function
+    signature = { enabled = true }, -- Shows a signature help window while you type arguments for a function
   },
 }
