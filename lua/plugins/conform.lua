@@ -1,7 +1,8 @@
 -- Format files
 return {
   'stevearc/conform.nvim',
-  event = { 'BufWritePre' },
+  event = { 'LspAttach', 'BufWritePre' },
+  dependencies = { 'j-hui/fidget.nvim' },
   cmd = { 'ConformInfo' },
   keys = {
     {
@@ -16,94 +17,43 @@ return {
   opts = {
     notify_on_error = false,
     format_on_save = function(bufnr)
-      local disable_filetypes = { c = true, cpp = true }
-      if disable_filetypes[vim.bo[bufnr].filetype] then
-        return nil
+      -- Disable autoformat on certain filetypes
+      local ignore_filetypes = {}
+      if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+        return
+      end
+      -- Disable with a global or buffer-local variable
+      if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        return
       end
       return { timeout_ms = 500, lsp_format = 'fallback' }
     end,
-    -- I think this is enough hehe
-    formatters_by_ft = {
-      asm = { 'asmfmt' },
-      bash = { 'shfmt', 'shellharden', 'beautysh' },
-      blade = { 'blade-formatter', 'tlint' },
-      brighterscript = { 'brighterscript-formatter' },
-      bzl = { 'buildifier' },
-      c = { 'ast-grep', 'clang-format' },
-      clojure = { 'joker', 'zprint', 'cljfmt' },
-      cmake = { 'cmakelang', 'gersemi' },
-      cpp = { 'ast-grep', 'clang-format' },
-      cs = { 'ast-grep', 'clang-format', 'csharpier' },
-      csh = { 'shfmt', 'beautysh' },
-      css = { 'prettier', 'ast-grep', 'prettierd' },
-      dart = { 'dcm', 'ast-grep' },
-      django = { 'djlint' },
-      elm = { 'elm-format' },
-      flow = { 'prettier', 'prettierd' },
-      fortran = { 'fprettify', 'findent' },
-      fsharp = { 'fantomas' },
-      gdscript = { 'gdtoolkit' },
-      go = { 'goimports-reviser', 'djlint', 'ast-grep', 'goimports', 'golines', 'gci', 'crlfmt', 'gofumpt' },
-      graphql = { 'prettier', 'prettierd' },
-      groovy = { 'npm-groovy-lint' },
-      handlebars = { 'djlint' },
-      haskell = { 'ormolu', 'fourmolu' },
-      hcl = { 'hclfmt' },
-      html = { 'prettier', 'rustywind', 'ast-grep', 'erb-formatter', 'htmlbeautifier', 'prettierd' },
-      htmlangular = { 'prettier', 'rustywind', 'djlint', 'prettierd' },
-      htmldjango = { 'prettier', 'rustywind', 'ast-grep', 'erb-formatter', 'htmlbeautifier', 'prettierd' },
-      java = { 'ast-grep', 'google-java-format', 'clang-format' },
-      javascript = { 'standardjs', 'prettier', 'biome', 'rustywind', 'djlint', 'ast-grep', 'prettierd' },
-      javascriptreact = { 'prettier', 'rustywind', 'ast-grep', 'prettierd' },
-      jinja = { 'djlint' },
-      json = { 'prettier', 'biome', 'jq', 'prettierd', 'fixjson' },
-      jsonc = { 'prettier', 'biome', 'jq', 'prettierd', 'fixjson' },
-      jsonnet = { 'jsonnetfmt' },
-      kotlin = { 'ast-grep', 'ktlint', 'ktfmt' },
-      ksh = { 'shfmt', 'beautysh' },
-      kwt = { 'kcl' },
-      less = { 'prettier', 'prettierd' },
-      lua = { 'ast-grep', 'luaformatter', 'stylua' },
-      luau = { 'stylua' },
-      markdown = { 'prettier', 'markdown-toc', 'markdownlint', 'mdformat', 'mdslw', 'cbfmt', 'mdsf', 'doctoc', 'prettierd', 'markdownlint-cli2' },
-      mustache = { 'djlint' },
-      nix = { 'nixpkgs-fmt' },
-      ocaml = { 'ocamlformat' },
-      php = { 'phpcbf', 'pretty-php', 'tlint', 'pint', 'easy-coding-standard', 'php-cs-fixer' },
-      proto = { 'buf' },
-      purescript = { 'purescript-tidy' },
-      python = {
-        'yapf',
-        'black',
-        'autoflake',
-        'autopep8',
-        'reorder-python-imports',
-        'docformatter',
-        'ast-grep',
-        'usort',
-        'ruff',
-        'blue',
-        'darker',
-        'isort',
-        'pyink',
-      },
-      rego = { 'opa' },
-      ruby = { 'erb-formatter', 'rufo', 'htmlbeautifier', 'rubocop', 'rubyfmt', 'standardrb' },
-      rust = { 'rustfmt', 'ast-grep' },
-      scss = { 'prettier', 'prettierd' },
-      sh = { 'shfmt', 'beautysh' },
-      snakemake = { 'snakefmt' },
-      sql = { 'sqlfmt', 'sql-formatter' },
-      systemverilog = { 'verible' },
-      tex = { 'bibtex-tidy', 'latexindent' },
-      twig = { 'djlint', 'twig-cs-fixer' },
-      typescript = { 'prettier', 'biome', 'rustywind', 'djlint', 'ast-grep', 'prettierd' },
-      typescriptreact = { 'prettier', 'biome', 'rustywind', 'ast-grep', 'prettierd' },
-      vue = { 'prettier', 'rustywind', 'prettierd' },
-      xhtml = { 'rustywind', 'ast-grep', 'erb-formatter', 'htmlbeautifier' },
-      xml = { 'xmlformatter' },
-      yaml = { 'prettier', 'prettierd', 'yamlfix', 'yamlfmt' },
-      zsh = { 'shfmt', 'beautysh' },
+    default_format_opts = {
+      lsp_format = 'fallback',
     },
+    formatters_by_ft = require 'mappings.formatters',
   },
+  config = function(_, opts)
+    require('conform').setup(opts)
+    vim.api.nvim_create_user_command('FormatDisable', function(args)
+      -- FormatDisable! will disable formatting just for this buffer
+      if args.bang then
+        require('fidget').notify('Autoformat disabled on current buffer', vim.log.levels.INFO)
+        vim.b.disable_autoformat = true
+      else
+        require('fidget').notify('Autoformat disabled', vim.log.levels.INFO)
+        vim.g.disable_autoformat = true
+      end
+    end, {
+      desc = 'Disable autoformat-on-save',
+      bang = true,
+    })
+    vim.api.nvim_create_user_command('FormatEnable', function()
+      require('fidget').notify('Autoformat enabled', vim.log.levels.INFO)
+      vim.b.disable_autoformat = false
+      vim.g.disable_autoformat = false
+    end, {
+      desc = 'Re-enable autoformat-on-save',
+    })
+  end,
 }

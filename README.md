@@ -56,6 +56,12 @@ The organization is as follows:
     ├── autocmds.lua
     ├── keymaps.lua
     ├── options.lua
+    ├── config
+    │   ├── linters.lua
+    │   └── lsp.lua
+    ├── mappings
+    │   ├── formatters.lua
+    │   └── linters.lua
     ├── plugins
     │   └── ...
     └── themes
@@ -75,7 +81,7 @@ In particular:
 - Highlight when yanking.
 
 - Disable features in big files:
-    - Disable treesitter and LSP if filesize is bigger than 1MB.
+    - Disable Treesitter and LSP if filesize is bigger than 1MB.
     - Disable all syntax highlighting is filesize is bigger than 10MB.
 
 - Help windows open in vertical.
@@ -110,7 +116,19 @@ In particular:
 They are all properly commented.
 In general all keymaps may be explored with `:Telescope keymaps`.
 
-### plugins folder
+### config subfolder
+
+Contains two files. `linters.lua` holds custom configurations for different linters while
+`lsp.lua` has custom configurations or overrides for LSP servers.
+
+### mappings subfolder
+
+Contains two files. `formatters.lua` establishes a mapping between languages and formatters
+that can be used. `linters.lua` offers the same but for linters.
+
+Be free to expand them!
+
+### plugins subfolder
 
 One file per plugin with one exception (see below). In the correspondig file at the beginning there is
 a description of what each plugin does:
@@ -119,9 +137,17 @@ a description of what each plugin does:
 
 - [`numToStr/Comment.nvim`](https://github.com/numToStr/Comment.nvim): better toggle comments.
 
+- [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim): support for formatters. Adds two important commands:
+    - `:FormatDisable(!)`: disable autoformat (current buffer only if banged).
+    - `:FormatEnable`: reenable autoformat.
+
+- [`j-hui/fidget.nvim`](https://github.com/j-hui/fidget.nvim): beautiful notifications.
+
 - [`lewis6991/gitsigns.nvim`](https://github.com/lewis6991/gitsigns.nvim): git integration and hunk navigation.
 
 - [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim): good LSP for Neovim configuration files.
+
+- [`mfussenegger/nvim-lint`](https://github.com/mfussenegger/nvim-lint): support for linters.
 
 - [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim): status bar with style similar to [`echasnovski/mini.statusline`](https://github.com/echasnovski/mini.statusline).
 
@@ -149,7 +175,7 @@ a description of what each plugin does:
 
 - [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim): show help on what keybind are defined.
 
-### themes folder
+### themes subfolder
 
 Where purely theme plugins are located. They are loaded first of all.
 To change theme edit the last line at `init.lua`.
