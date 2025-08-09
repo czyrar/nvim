@@ -20,6 +20,9 @@ return {
         table.insert(installed, linter)
       end
     end
+    if #installed == 0 then
+      return
+    end
 
     -- Discard if condition false
     local lintersconf = require 'config.linters'
@@ -34,6 +37,9 @@ return {
       elseif lintersconf[linter].condition(ctx) then
         table.insert(to_load, linter)
       end
+    end
+    if #to_load == 0 then
+      return
     end
 
     -- Merge our configs with the defaults
