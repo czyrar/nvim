@@ -13,7 +13,7 @@ return {
       return
     end
 
-    -- Discard uninstalled
+    -- Discard not installed
     local installed = {}
     for _, linter in ipairs(linters_ft) do
       if vim.fn.executable(lint.linters[linter].cmd) == 1 then

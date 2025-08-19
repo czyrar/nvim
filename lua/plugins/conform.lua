@@ -34,7 +34,28 @@ return {
     formatters_by_ft = require 'mappings.formatters',
   },
   config = function(_, opts)
-    require('conform').setup(opts)
+    local conform = require 'conform'
+    conform.setup(opts)
+
+    -- If condition false then disable
+    local formattersconf = require 'config.formatters'
+    local ctx = { filename = vim.api.nvim_buf_get_name(0) }
+    ctx.dirname = vim.fn.fnamemodify(ctx.filename, ':h')
+    for _, conf in ipairs(formattersconf) do
+      if conf.condition and not conf.condition(ctx) then
+        require('fidget').notify('Autoformat disabled on current buffer', vim.log.levels.INFO)
+        vim.b.disable_autoformat = true
+      end
+    end
+
+    -- Merge our config with the defaults
+    for formatter, conf in pairs(formattersconf) do
+      if conf.pre_args then
+        conform.formatters[formatter] = { prepend_args = conf.pre_args }
+      end
+    end
+
+    -- Commands to enable/disable the autoformat on save
     vim.api.nvim_create_user_command('FormatDisable', function(args)
       -- FormatDisable! will disable formatting just for this buffer
       if args.bang then

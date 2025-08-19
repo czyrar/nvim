@@ -18,10 +18,7 @@ auto('FileType', {
   callback = function(args)
     -- Check if we can use fidget
     local ok, fidget = pcall(require, 'fidget')
-    local notify = vim.notify
-    if ok then
-      notify = fidget.notify
-    end
+    local notify = ok and vim.notify or fidget.notify
     local ft = vim.filetype.match { buf = args.buf } or ''
     local size = vim.fn.getfsize(args.file)
     if size > size_limit then

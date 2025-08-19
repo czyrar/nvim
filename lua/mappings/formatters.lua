@@ -2,7 +2,7 @@
 -- https://github.com/mimikun/mason-conform.nvim/blob/master/lua/mason-conform/mappings/filetype.lua
 return {
   bash = { 'shfmt' },
-  fortran = { 'fprettify' },
+  fortran = { 'findent' },
   lua = { 'stylua' },
   markdown = { 'markdownlint' },
   python = { 'autopep8', 'ruff' },

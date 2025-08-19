@@ -13,10 +13,10 @@ return {
         require('which-key').add { '<leader>g', group = '[G]it Hunk' }
 
         -- Navigation
-        map('n', ']h', function()
+        map('n', ']g', function()
           gitsigns.nav_hunk 'next'
         end, { desc = 'Previous Hunk' })
-        map('n', '[h', function()
+        map('n', '[g', function()
           gitsigns.nav_hunk 'prev'
         end, { desc = 'Next Hunk' })
 
