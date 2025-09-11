@@ -10,6 +10,23 @@ auto('TextYankPost', {
   end,
 })
 
+-- Establish a mapping of filetypes
+local mapping = {
+  fypp = 'fortran',
+}
+vim.filetype.add {
+  extension = mapping,
+}
+-- auto('FileType', {
+--   group = augroup('my-ftmap', { clear = true }),
+--   callback = function(args)
+--     local newft = mapping[vim.bo[args.buf].filetype]
+--     if newft then
+--       vim.bo[args.buf].filetype = newft
+--     end
+--   end,
+-- })
+
 -- Disable features when file is too big
 local size_limit = 1024 * 1024 -- 1MB
 local syntax_limit = 10 * size_limit

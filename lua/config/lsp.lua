@@ -15,4 +15,16 @@ return {
       '--lowercase_intrinsics',
     },
   },
+  -- Python
+  pylsp = {
+    settings = {
+      pylsp = {
+        plugins = {
+          pycodestyle = {
+            ignore = { 'E402' },
+          },
+        },
+      },
+    },
+  },
 }
