@@ -6,7 +6,7 @@ return {
     require('lualine').setup {
       options = {
         icons_enabled = vim.g.have_nerd_font,
-        theme = 'auto',
+        theme = 'base16',
         component_separators = { left = '', right = '' },
         section_separators = { left = '', right = '' },
         ignore_focus = {},

@@ -33,7 +33,6 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Plugins
 require('lazy').setup {
-  install = { colorscheme = { 'tokyonight' } },
   spec = {
     { import = 'themes', priority = 1000, lazy = false },
     { import = 'plugins' },
@@ -41,6 +40,3 @@ require('lazy').setup {
   ui = { icons = vim.g.have_nerd_font and {} },
 }
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Open [L]azy' })
-
--- Set the theme
-vim.cmd.colorscheme 'tokyonight'
