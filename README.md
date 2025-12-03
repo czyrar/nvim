@@ -178,4 +178,4 @@ a description of what each plugin does:
 ### themes subfolder
 
 Where purely theme plugins are located. They are loaded first of all.
-To change theme edit the last line at `init.lua`.
+To change theme edit the `colorscheme` variable at the start of `init.lua`.
