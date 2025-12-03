@@ -1,3 +1,5 @@
+local colorscheme = 'tokyonight-night'
+
 -- Set to false if in a terminal without nerdfont
 vim.g.have_nerd_font = true
 
@@ -40,3 +42,6 @@ require('lazy').setup {
   ui = { icons = vim.g.have_nerd_font and {} },
 }
 vim.keymap.set('n', '<leader>l', '<cmd>Lazy<CR>', { desc = 'Open [L]azy' })
+
+-- Set the theme
+vim.cmd.colorscheme(colorscheme)

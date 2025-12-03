@@ -52,19 +52,3 @@ auto('FileType', {
     vim.cmd 'wincmd L'
   end,
 })
-
--- Register an autocmd to listen for matugen updates
-vim.api.nvim_create_autocmd('Signal', {
-  pattern = 'SIGUSR1',
-  callback = function()
-    local matugen_path = os.getenv 'HOME' .. '/.config/nvim/lua/themes/matugen.lua'
-    local file, err = io.open(matugen_path, 'r')
-    if err ~= nil then
-      vim.cmd 'colorscheme base16-tokyo-night-dark'
-    else
-      io.close(file)
-      dofile(matugen_path)
-    end
-    dofile(os.getenv 'HOME' .. '/.config/nvim/lua/plugins/lualine.lua')
-  end,
-})
