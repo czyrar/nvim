@@ -34,7 +34,6 @@ vim.pack.add {
   'https://github.com/lewis6991/gitsigns.nvim',
   'https://github.com/nvim-lualine/lualine.nvim',
   'https://github.com/brenoprata10/nvim-highlight-colors',
-  'https://github.com/mfussenegger/nvim-lint',
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/kylechui/nvim-surround',
   'https://github.com/akinsho/nvim-toggleterm.lua',
@@ -65,6 +64,8 @@ require('fidget').setup {}
 require('blink.cmp').setup {
   signature = { enabled = true },
 }
+require('mason').setup {}
+require('mason-lspconfig').setup {}
 
 -- Load the rest
 for file_name, type in vim.fs.dir(vim.fs.joinpath(vim.fn.stdpath 'config', 'lua', 'plugins')) do

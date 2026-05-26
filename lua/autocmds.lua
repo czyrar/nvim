@@ -30,16 +30,14 @@ auto('FileType', {
     local ft = vim.filetype.match { buf = args.buf } or ''
     local size = vim.fn.getfsize(args.file)
     if size > size_limit then
-      vim.bo[args.buf].filetype = 'big-' .. ft
+      vim.treesitter.stop()
       if size > syntax_limit then
         notify('Very bigfile detected: all features are disabled', vim.log.levels.WARN)
         vim.bo[args.buf].syntax = 'big-' .. ft
       else
-        notify('Bigfile detected: LSP and Treesitter disabled', vim.log.levels.WARN)
-        vim.bo[args.buf].syntax = ft
+        notify('Bigfile detected: LSP and tree-sitter disabled', vim.log.levels.WARN)
+        vim.lsp.client():stop()
       end
-    else
-      vim.bo[args.buf].filetype = ft
     end
   end,
 })

@@ -1,6 +1,4 @@
 -- LSP protocol
-require('mason').setup {}
-require('mason-lspconfig').setup {}
 local blink = require 'blink.cmp'
 --  This function gets run when an LSP attaches to a particular buffer.
 --    That is to say, every time a new file is opened that is associated with
@@ -84,14 +82,14 @@ vim.diagnostic.config {
   severity_sort = true,
   float = { border = 'rounded', source = 'if_many' },
   underline = { severity = vim.diagnostic.severity.ERROR },
-  signs = vim.g.have_nerd_font and {
+  signs = {
     text = {
       [vim.diagnostic.severity.ERROR] = '󰅚 ',
       [vim.diagnostic.severity.WARN] = '󰀪 ',
       [vim.diagnostic.severity.INFO] = '󰋽 ',
       [vim.diagnostic.severity.HINT] = '󰌶 ',
     },
-  } or {},
+  },
   virtual_text = {
     source = 'if_many',
     spacing = 2,
@@ -108,9 +106,6 @@ vim.diagnostic.config {
 }
 
 -- LSP servers and clients are able to communicate to each other what features they support.
---  By default, Neovim doesn't support everything that is in the LSP specification.
---  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
---  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
 local capabilities = blink.get_lsp_capabilities()
 vim.lsp.config('*', { capabilities = capabilities })
 

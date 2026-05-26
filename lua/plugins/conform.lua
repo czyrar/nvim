@@ -5,7 +5,10 @@ local fidget = require 'fidget'
 -- Local config
 local config = {
   findent = {
-    pre_args = { '-i', '2' },
+    prepend_args = { '-i', '2' },
+  },
+  fprettify = {
+    prepend_args = { '-i', '2', '--enable-decl', '--c-relations', '--enable-replacements', '--case', '1', '1', '1', '1' },
   },
 }
 local formatters_by_ft = {
@@ -35,6 +38,7 @@ conform.setup {
   end,
   default_format_opts = {
     lsp_format = 'fallback',
+    stop_after_first = true,
   },
   formatters_by_ft = formatters_by_ft,
 }
@@ -50,11 +54,7 @@ for _, conf in ipairs(config) do
 end
 
 -- Merge our config with the defaults
-for formatter, conf in pairs(config) do
-  if conf.pre_args then
-    conform.formatters[formatter] = { prepend_args = conf.pre_args }
-  end
-end
+conform.formatters = vim.tbl_deep_extend('force', conform.formatters, config)
 
 -- Keybind to run
 vim.keymap.set('n', '=f', function()

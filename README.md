@@ -7,7 +7,7 @@ Heavily inspired by [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
 - `git`
 
-- `nvim` `v.0.11.0` or above [[INSTALL](https://github.com/neovim/neovim/blob/master/INSTALL.md)]
+- `nvim` `v.0.12.0` or above [[INSTALL](https://github.com/neovim/neovim/blob/master/INSTALL.md)]
 
 - `cargo` [[INSTALL](https://doc.rust-lang.org/stable/cargo/getting-started/installation.html)]
 
@@ -21,7 +21,7 @@ Heavily inspired by [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
 - (optional) `fzf` [[INSTALL](https://github.com/junegunn/fzf?tab=readme-ov-file#installation)]
 
-- (optional) A Nerd Font. If not installed then set `vim.g.have_nerd_font = false` in `init.lua`.
+- (optional) A Nerd Font.
 
 ### Arch requisites install (not the font)
 
@@ -51,27 +51,22 @@ The organization is as follows:
 ```sh
 .
 ├── init.lua
-├── lazy-lock.json
-└── lua
-    ├── autocmds.lua
-    ├── keymaps.lua
-    ├── options.lua
-    ├── config
-    │   ├── linters.lua
-    │   └── lsp.lua
-    ├── mappings
-    │   ├── formatters.lua
-    │   └── linters.lua
-    ├── plugins
-    │   └── ...
-    └── themes
-        └── ...
+├── nvim-pack-lock.json
+├── lua/
+│   ├── autocmds.lua
+│   ├── keymaps.lua
+│   ├── options.lua
+│   └── plugins/
+│      └── ...
+└── after/
+    └── lsp
+       └── ...
 ```
 
-`init.lua` is a simple file which just bootstraps [lazy.nvim](https://github.com/folke/lazy.nvim) (the package manager)
+`init.lua` is a simple file which installs all packages
 and includes the files in the rest of the paths.
 
-`lazy.lock` fixes the versions of the packages. Feel free to delete it and update to new versions.
+`nvim-pack-lock.json` fixes the versions of the packages. Feel free to delete it and update to new versions.
 
 ## lua folder
 
@@ -81,8 +76,8 @@ In particular:
 - Highlight when yanking.
 
 - Disable features in big files:
-    - Disable Treesitter and LSP if filesize is bigger than 1MB.
-    - Disable all syntax highlighting is filesize is bigger than 10MB.
+  - Disable Treesitter and LSP if filesize is bigger than 1MB.
+  - Disable all syntax highlighting is filesize is bigger than 10MB.
 
 - Help windows open in vertical.
 
@@ -116,18 +111,6 @@ In particular:
 They are all properly commented.
 In general all keymaps may be explored with `:Telescope keymaps`.
 
-### config subfolder
-
-Contains two files. `linters.lua` holds custom configurations for different linters while
-`lsp.lua` has custom configurations or overrides for LSP servers.
-
-### mappings subfolder
-
-Contains two files. `formatters.lua` establishes a mapping between languages and formatters
-that can be used. `linters.lua` offers the same but for linters.
-
-Be free to expand them!
-
 ### plugins subfolder
 
 One file per plugin with one exception (see below). In the correspondig file at the beginning there is
@@ -137,17 +120,16 @@ a description of what each plugin does:
 
 - [`numToStr/Comment.nvim`](https://github.com/numToStr/Comment.nvim): better toggle comments.
 
-- [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim): support for formatters. Adds two important commands:
-    - `:FormatDisable(!)`: disable autoformat (current buffer only if banged).
-    - `:FormatEnable`: reenable autoformat.
+- [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim): support for formatters. It includes the custom
+    configuration for the formatters. Adds two important commands:
+  - `:FormatDisable(!)`: disable autoformat (current buffer only if banged).
+  - `:FormatEnable`: reenable autoformat.
 
 - [`j-hui/fidget.nvim`](https://github.com/j-hui/fidget.nvim): beautiful notifications.
 
 - [`lewis6991/gitsigns.nvim`](https://github.com/lewis6991/gitsigns.nvim): git integration and hunk navigation.
 
 - [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim): good LSP for Neovim configuration files.
-
-- [`mfussenegger/nvim-lint`](https://github.com/mfussenegger/nvim-lint): support for linters.
 
 - [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim): status bar with style similar to [`echasnovski/mini.statusline`](https://github.com/echasnovski/mini.statusline).
 
@@ -167,15 +149,6 @@ a description of what each plugin does:
 
 - [`folke/todo-comments.nvim`](https://github.com/folke/todo-comments.nvim): highlight important comments.
 
-- [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter): treesitter queries and highlight. Includes submodules:
-    - [`nvim-treesitter/nvim-treesitter-context`](https://github.com/nvim-treesitter/nvim-treesitter-context): provides context in the upper part of the screen.
-    - [`nvim-treesitter/nvim-treesitter-textobjects`](https://github.com/nvim-treesitter/nvim-treesitter-textobjects): provides textobjects for the language in buffer.
-
-- [`Wansmer/treesj`](https://github.com/Wansmer/treesj): wrap/unwrap nested code.
+- [`romus204/tree-sitter-manager.nvim`](https://github.com/romus204/tree-sitter-manager.nvim): provides UI to install tree-sitters.
 
 - [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim): show help on what keybind are defined.
-
-### themes subfolder
-
-Where purely theme plugins are located. They are loaded first of all.
-To change theme edit the `colorscheme` variable at the start of `init.lua`.
