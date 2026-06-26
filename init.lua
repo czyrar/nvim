@@ -22,13 +22,14 @@ vim.pack.add {
   'https://github.com/nvim-tree/nvim-web-devicons', -- lualine
   'https://github.com/mason-org/mason.nvim', -- nvim-lspconfig
   'https://github.com/mason-org/mason-lspconfig.nvim', -- nvim-lspconfig
-  'https://github.com/nvim-lua/plenary.nvim', -- telescope
+  'https://github.com/nvim-lua/plenary.nvim', -- telescope, compile-mode
   'https://github.com/nvim-telescope/telescope-ui-select.nvim', --telescope
   'https://github.com/nvim-tree/nvim-web-devicons', -- telescope, which-key
   'https://github.com/nvim-telescope/telescope-fzf-native.nvim', -- telescope
   -- Packages
   'https://github.com/saghen/blink.cmp',
   'https://github.com/numToStr/Comment.nvim',
+  'https://github.com/ej-shafran/compile-mode.nvim',
   'https://github.com/stevearc/conform.nvim',
   'https://github.com/j-hui/fidget.nvim',
   'https://github.com/lewis6991/gitsigns.nvim',

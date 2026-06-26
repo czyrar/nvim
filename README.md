@@ -120,10 +120,10 @@ a description of what each plugin does:
 
 - [`numToStr/Comment.nvim`](https://github.com/numToStr/Comment.nvim): better toggle comments.
 
+- [`ej-shafran/compile-mode.nvim`](https://github.com/ej-shafran/compile-mode.nvim): add Emacs like compile mode
+
 - [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim): support for formatters. It includes the custom
-    configuration for the formatters. Adds two important commands:
-  - `:FormatDisable(!)`: disable autoformat (current buffer only if banged).
-  - `:FormatEnable`: reenable autoformat.
+    configuration for the formatters.
 
 - [`j-hui/fidget.nvim`](https://github.com/j-hui/fidget.nvim): beautiful notifications.
 
