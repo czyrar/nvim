@@ -12,6 +12,10 @@
       "rev": "f29d8bac6549bc1e7d699c83f680823d7def98bd",
       "src": "https://github.com/saghen/blink.lib"
     },
+    "compile-mode.nvim": {
+      "rev": "dd3e952076a33faba0a55b04b2b73945832c0527",
+      "src": "https://github.com/ej-shafran/compile-mode.nvim"
+    },
     "conform.nvim": {
       "rev": "619363c30309d29ffa631e67c8183f2a72caa373",
       "src": "https://github.com/stevearc/conform.nvim"
