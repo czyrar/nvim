@@ -16,15 +16,16 @@ vim.pack.add {
   -- Themes
   'https://github.com/folke/tokyonight.nvim',
   -- Dependencies
-  'https://github.com/saghen/blink.lib', -- blink
-  'https://github.com/rafamadriz/friendly-snippets', -- blink
-  'https://github.com/folke/lazydev.nvim', -- gitsigns
-  'https://github.com/nvim-tree/nvim-web-devicons', -- lualine
-  'https://github.com/mason-org/mason.nvim', -- nvim-lspconfig
-  'https://github.com/mason-org/mason-lspconfig.nvim', -- nvim-lspconfig
-  'https://github.com/nvim-lua/plenary.nvim', -- telescope
-  'https://github.com/nvim-telescope/telescope-ui-select.nvim', --telescope
-  'https://github.com/nvim-tree/nvim-web-devicons', -- telescope, which-key
+  'https://github.com/saghen/blink.lib',                         -- blink
+  'https://github.com/rafamadriz/friendly-snippets',             -- blink
+  'https://github.com/folke/lazydev.nvim',                       -- gitsigns
+  'https://github.com/nvim-tree/nvim-web-devicons',              -- lualine
+  'https://github.com/mason-org/mason.nvim',                     -- nvim-lspconfig
+  'https://github.com/mason-org/mason-lspconfig.nvim',           -- nvim-lspconfig
+  'https://github.com/nvim-lua/plenary.nvim',                    -- telescope
+  'https://github.com/folke/snacks.nvim',                        -- nerdy
+  'https://github.com/nvim-telescope/telescope-ui-select.nvim',  --telescope
+  'https://github.com/nvim-tree/nvim-web-devicons',              -- telescope, which-key
   'https://github.com/nvim-telescope/telescope-fzf-native.nvim', -- telescope
   -- Packages
   'https://github.com/saghen/blink.cmp',
@@ -33,6 +34,7 @@ vim.pack.add {
   'https://github.com/j-hui/fidget.nvim',
   'https://github.com/lewis6991/gitsigns.nvim',
   'https://github.com/nvim-lualine/lualine.nvim',
+  'https://github.com/2kabhishek/nerdy.nvim',
   'https://github.com/brenoprata10/nvim-highlight-colors',
   'https://github.com/neovim/nvim-lspconfig',
   'https://github.com/kylechui/nvim-surround',
@@ -61,6 +63,7 @@ require('blink.cmp').build()
 require('nvim-web-devicons').setup {}
 require('which-key').setup { preset = 'helix' }
 require('fidget').setup {}
+require('snacks').setup {}
 require('blink.cmp').setup {
   signature = { enabled = true },
 }

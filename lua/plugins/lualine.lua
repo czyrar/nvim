@@ -1,7 +1,7 @@
 -- Status bar customized to mimic mini.statusbar
 require('lualine').setup {
   options = {
-    icons_enabled = vim.g.have_nerd_font,
+    icons_enabled = true,
     theme = 'tokyonight-night',
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },

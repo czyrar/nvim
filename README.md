@@ -133,6 +133,8 @@ a description of what each plugin does:
 
 - [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim): status bar with style similar to [`echasnovski/mini.statusline`](https://github.com/echasnovski/mini.statusline).
 
+- [`2KAbhishek/nerdy.nvim`](https://github.com/2KAbhishek/nerdy.nvim): finder for nerd font icons.
+
 - [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig): allow attachment to LSP servers.
 
 - [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround): allows for surrounding operations.
