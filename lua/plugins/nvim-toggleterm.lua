@@ -1,10 +1,14 @@
 -- Terminal with support to send lines
+vim.pack.add {
+  'https://github.com/akinsho/nvim-toggleterm.lua',
+}
+
 require('toggleterm').setup {
   open_mapping = '<C-\\>',
   insert_mappings = false,
   hide_number = true,
   start_in_insert = true,
-  direction = 'vertical', -- vertical | float | tab
+  direction = 'horizontal',
   size = 40,
 }
 vim.keymap.set('n', '<leader>t', function()

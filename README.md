@@ -113,7 +113,7 @@ In general all keymaps may be explored with `:Telescope keymaps`.
 
 ### plugins subfolder
 
-One file per plugin with one exception (see below). In the correspondig file at the beginning there is
+One file per plugin with one exception. In the correspondig file at the beginning there is
 a description of what each plugin does:
 
 - [`saghen/blink.cmp`](https://github.com/saghen/blink.cmp): provides autocompletion and snippets (through dependencies).
@@ -121,9 +121,6 @@ a description of what each plugin does:
 - [`numToStr/Comment.nvim`](https://github.com/numToStr/Comment.nvim): better toggle comments.
 
 - [`ej-shafran/compile-mode.nvim`](https://github.com/ej-shafran/compile-mode.nvim): add Emacs like compile mode
-
-- [`stevearc/conform.nvim`](https://github.com/stevearc/conform.nvim): support for formatters. It includes the custom
-    configuration for the formatters.
 
 - [`j-hui/fidget.nvim`](https://github.com/j-hui/fidget.nvim): beautiful notifications.
 
@@ -141,6 +138,8 @@ a description of what each plugin does:
 
 - [`akinsho/nvim-toggleterm.lua`](https://github.com/akinsho/nvim-toggleterm.lua): simple terminal split with REPL-like functionality.
 
+- [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter): installs and enables treesitters.
+
 - [`stevearc/oil.nvim`](https://github.com/stevearc/oil.nvim): edit filetrees as if they were a simple file.
 
 - [`MeanderingProgrammer/render-markdown.nvim`](https://github.com/MeanderingProgrammer/render-markdown.nvim): render markdown in normal mode.
@@ -150,7 +149,5 @@ a description of what each plugin does:
 - [`nvim-telescope/telescope.nvim`](https://github.com/nvim-telescope/telescope.nvim): fuzzy finder for many things.
 
 - [`folke/todo-comments.nvim`](https://github.com/folke/todo-comments.nvim): highlight important comments.
-
-- [`romus204/tree-sitter-manager.nvim`](https://github.com/romus204/tree-sitter-manager.nvim): provides UI to install tree-sitters.
 
 - [`folke/which-key.nvim`](https://github.com/folke/which-key.nvim): show help on what keybind are defined.

@@ -1,10 +1,7 @@
-local auto = vim.api.nvim_create_autocmd
-local augroup = vim.api.nvim_create_augroup
-
 -- Highlight when yanking (copying) text
-auto('TextYankPost', {
+vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
-  group = augroup('my-highlight-yank', { clear = true }),
+  group = vim.api.nvim_create_augroup('my-highlight-yank', { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
@@ -21,8 +18,8 @@ vim.filetype.add {
 -- Disable features when file is too big
 local size_limit = 1024 * 1024 -- 1MB
 local syntax_limit = 10 * size_limit
-auto('FileType', {
-  group = augroup('my-bigfile', { clear = true }),
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('my-bigfile', { clear = true }),
   callback = function(args)
     -- Check if we can use fidget
     local ok, fidget = pcall(require, 'fidget')
@@ -33,18 +30,18 @@ auto('FileType', {
       vim.treesitter.stop()
       if size > syntax_limit then
         notify('Very bigfile detected: all features are disabled', vim.log.levels.WARN)
+        vim.lsp.client():stop()
         vim.bo[args.buf].syntax = 'big-' .. ft
       else
-        notify('Bigfile detected: LSP and tree-sitter disabled', vim.log.levels.WARN)
-        vim.lsp.client():stop()
+        notify('Bigfile detected: tree-sitter disabled', vim.log.levels.WARN)
       end
     end
   end,
 })
 
 -- Open all new windows as vertical splits
-auto('FileType', {
-  group = augroup('my-vertical-help', { clear = true }),
+vim.api.nvim_create_autocmd('FileType', {
+  group = vim.api.nvim_create_augroup('my-vertical-help', { clear = true }),
   pattern = 'help',
   callback = function()
     vim.cmd 'wincmd L'

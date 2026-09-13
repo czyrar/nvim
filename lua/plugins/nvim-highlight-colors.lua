@@ -1,1 +1,6 @@
-require('nvim-highlight-colors').setup {}
+-- See colors when hex is placed
+vim.pack.add {
+  'https://github.com/brenoprata10/nvim-highlight-colors',
+}
+
+require('nvim-highlight-colors').setup()

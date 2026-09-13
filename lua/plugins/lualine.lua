@@ -1,4 +1,9 @@
 -- Status bar customized to mimic mini.statusbar
+vim.pack.add {
+  'https://github.com/nvim-tree/nvim-web-devicons',
+  'https://github.com/nvim-lualine/lualine.nvim',
+}
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -16,7 +21,7 @@ require('lualine').setup {
     },
     lualine_b = { 'branch', 'diff', 'diagnostics' },
     lualine_c = { 'filename' },
-    lualine_x = { 'filetype', 'encoding' },
+    lualine_x = { 'filetype' },
     lualine_y = { 'progress' },
     lualine_z = {
       function()
@@ -29,10 +34,9 @@ require('lualine').setup {
     },
   },
   inactive_sections = {
-    lualine_a = {},
-    lualine_b = {},
-    lualine_c = { 'filename' },
-    lualine_x = {
+    lualine_a = { 'filename' },
+    lualine_y = { 'progress' },
+    lualine_z = {
       function()
         local line = vim.fn.line '.'
         local nlines = vim.fn.line '$'
@@ -41,7 +45,5 @@ require('lualine').setup {
         return string.format('%3d|%-2d │ %3d|%-2d', col, ncols, line, nlines)
       end,
     },
-    lualine_y = {},
-    lualine_z = {},
   },
 }
