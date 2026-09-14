@@ -13,19 +13,29 @@ vim.pack.add {
 }
 
 local ts_filetypes = {
-  'sh',
-  'fortran',
-  'python'
+  sh = 'bash',
+  fortran = 'fortran',
+  lua = 'lua',
+  python = 'python'
 }
 
 vim.api.nvim_create_autocmd('FileType', {
-  pattern = ts_filetypes,
-  callback = function()
+  pattern = vim.tbl_keys(ts_filetypes),
+  callback = function(args)
+    local ft = vim.filetype.match { buf = args.buf } or ''
+    local ts = require('nvim-treesitter')
+    if (not vim.tbl_contains(ts.get_installed(), ft)) then
+      if (not vim.tbl_contains(ts.get_available(), ft)) then
+        return
+      end
+      ts.install(ts_filetypes[ft])
+    end
     vim.treesitter.start()
 
     -- Folds
     vim.wo[0][0].foldexpr = 'v:lua.vim.treesitter.foldexpr()'
     vim.wo[0][0].foldmethod = 'expr'
+    vim.cmd('normal zR')
 
     -- Indent
     vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
