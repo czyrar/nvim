@@ -1,7 +1,8 @@
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
--- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+-- Better terminal mappings
+vim.keymap.set('n', '<leader>t', '<cmd>split<CR><C-w><C-j><cmd>terminal<CR>i', { desc = 'Enter terminal mode' })
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- Keybinds to make split navigation easier.

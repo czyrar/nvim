@@ -60,10 +60,6 @@
       "rev": "2e93e154de9ff326def6480a4358bfc149d5da2c",
       "src": "https://github.com/kylechui/nvim-surround"
     },
-    "nvim-toggleterm.lua": {
-      "rev": "9a88eae817ef395952e08650b3283726786fb5fb",
-      "src": "https://github.com/akinsho/nvim-toggleterm.lua"
-    },
     "nvim-treesitter": {
       "rev": "9a168f6357ed21c3a636e1727bc7d382abc451b8",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
