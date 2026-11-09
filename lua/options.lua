@@ -4,7 +4,7 @@ vim.o.relativenumber = true
 vim.o.signcolumn = 'yes:2'
 
 -- No wrap at the end of the screen
-vim.o.wrap = false
+-- vim.o.wrap = false
 
 -- Spaces, no tabs and default indent without LSP
 vim.o.expandtab = true

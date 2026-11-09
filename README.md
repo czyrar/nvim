@@ -7,7 +7,7 @@ Heavily inspired by [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
 
 - `git`
 
-- `nvim` `v.0.12.0` or above [[INSTALL](https://github.com/neovim/neovim/blob/master/INSTALL.md)]
+- `nvim` `v.0.12` or above [[INSTALL](https://github.com/neovim/neovim/blob/master/INSTALL.md)]
 
 - `cargo` [[INSTALL](https://doc.rust-lang.org/stable/cargo/getting-started/installation.html)]
 
@@ -53,7 +53,6 @@ The organization is as follows:
 ├── init.lua
 ├── nvim-pack-lock.json
 ├── lua/
-│   ├── autocmds.lua
 │   ├── keymaps.lua
 │   ├── options.lua
 │   └── plugins/
@@ -63,29 +62,23 @@ The organization is as follows:
        └── ...
 ```
 
-`init.lua` is a simple file which installs all packages
-and includes the files in the rest of the paths.
+`init.lua` includes paths and defines some autocmds:
+
+- Highlight when yanking.
+
+- Disable features in big files:
+  - Disable Treesitter and LSP if filesize is bigger than 5MB.
+  - Disable almost all plugins is filesize is bigger than 50MB.
+
+- Help windows open in vertical.
 
 `nvim-pack-lock.json` fixes the versions of the packages. Feel free to delete it and update to new versions.
 
 ## lua folder
 
-`autocmds.lua` include commands that execute when some action happen and are not related to any plugin.
-In particular:
-
-- Highlight when yanking.
-
-- Disable features in big files:
-  - Disable Treesitter and LSP if filesize is bigger than 1MB.
-  - Disable all syntax highlighting is filesize is bigger than 10MB.
-
-- Help windows open in vertical.
-
 `options.lua` sets my preferred defaults:
 
 - Show numbers (relative) and have them fixed (no LSP/git movement).
-
-- Do not wrap lines.
 
 - By default tabs are 2 spaces.
 
@@ -126,8 +119,6 @@ a description of what each plugin does:
 
 - [`lewis6991/gitsigns.nvim`](https://github.com/lewis6991/gitsigns.nvim): git integration and hunk navigation.
 
-- [`folke/lazydev.nvim`](https://github.com/folke/lazydev.nvim): good LSP for Neovim configuration files.
-
 - [`nvim-lualine/lualine.nvim`](https://github.com/nvim-lualine/lualine.nvim): status bar with style similar to [`echasnovski/mini.statusline`](https://github.com/echasnovski/mini.statusline).
 
 - [`2KAbhishek/nerdy.nvim`](https://github.com/2KAbhishek/nerdy.nvim): finder for nerd font icons.
@@ -135,8 +126,6 @@ a description of what each plugin does:
 - [`neovim/nvim-lspconfig`](https://github.com/neovim/nvim-lspconfig): allow attachment to LSP servers.
 
 - [`kylechui/nvim-surround`](https://github.com/kylechui/nvim-surround): allows for surrounding operations.
-
-- [`akinsho/nvim-toggleterm.lua`](https://github.com/akinsho/nvim-toggleterm.lua): simple terminal split with REPL-like functionality.
 
 - [`nvim-treesitter/nvim-treesitter`](https://github.com/nvim-treesitter/nvim-treesitter): installs and enables treesitters.
 

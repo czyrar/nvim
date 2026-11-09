@@ -4,6 +4,13 @@ vim.pack.add {
   'https://github.com/lewis6991/gitsigns.nvim',
 }
 
+require('lazydev').setup {
+  library = {
+    -- Load luvit types when the `vim.uv` word is found
+    { path = '${3rd}/luv/library', words = { 'vim%.uv' } },
+  },
+}
+
 local gitsigns = require 'gitsigns'
 gitsigns.setup {
   on_attach = function(bufnr)
