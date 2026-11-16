@@ -6,10 +6,18 @@ require 'options'
 
 -- Theme
 vim.pack.add {
-  'https://github.com/folke/tokyonight.nvim',
+  'https://github.com/Shatur/neovim-ayu',
 }
-require('tokyonight').setup { style = 'night' }
-vim.cmd.colorscheme 'tokyonight'
+require('ayu').setup {
+  mirage = false,
+  overrides = {
+    Normal = { bg = '#181818' },
+    LineNr = { fg = '#6B7B8E' },
+    FoldColumn = { bg = '#181818' },
+    SignColumn = { bg = '#181818' },
+  }
+}
+vim.cmd.colorscheme 'ayu'
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -19,14 +27,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     vim.highlight.on_yank()
   end,
 })
-
--- Establish a mapping of filetypes
-local mapping = {
-  fypp = 'fortran',
-}
-vim.filetype.add {
-  extension = mapping,
-}
 
 -- Open help windows as vertical splits
 vim.api.nvim_create_autocmd('FileType', {
