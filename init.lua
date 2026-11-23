@@ -5,18 +5,7 @@ require 'keymaps'
 require 'options'
 
 -- Theme
-vim.pack.add {
-  'https://github.com/Shatur/neovim-ayu',
-}
-require('ayu').setup {
-  mirage = false,
-  overrides = {
-    Normal = { bg = '#181818' },
-    LineNr = { fg = '#6B7B8E' },
-    FoldColumn = { bg = '#181818' },
-    SignColumn = { bg = '#181818' },
-  }
-}
+vim.pack.add { 'https://github.com/Shatur/neovim-ayu' }
 vim.cmd.colorscheme 'ayu'
 
 -- Highlight when yanking (copying) text
