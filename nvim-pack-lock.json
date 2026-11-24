@@ -29,7 +29,7 @@
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
     "gruber-darker-ayu.nvim": {
-      "rev": "10ef0eed14f493c89fcbfc62f1fad29e3fd00e29",
+      "rev": "50c6d3b9e7eb5c283e2364cc760746fe423579c1",
       "src": "https://github.com/czyrar/gruber-darker-ayu.nvim"
     },
     "lazydev.nvim": {
@@ -47,10 +47,6 @@
     "mason.nvim": {
       "rev": "bb639d4bf385a4d89f478b83af4d770be05ab7eb",
       "src": "https://github.com/mason-org/mason.nvim"
-    },
-    "neovim-ayu": {
-      "rev": "e5a9f0fa2918d6b5f57c21b3ac014314ee5e41c8",
-      "src": "https://github.com/Shatur/neovim-ayu"
     },
     "nerdy.nvim": {
       "rev": "8fd18f0075c480b4e0865464dcd4fb7a42c6889e",

@@ -7,7 +7,7 @@ vim.pack.add {
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'ayu',
+    theme = 'gruber-darker-ayu',
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
     ignore_focus = {},

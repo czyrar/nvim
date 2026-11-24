@@ -8,7 +8,7 @@ require 'options'
 vim.pack.add {
   'https://github.com/czyrar/gruber-darker-ayu.nvim',
 }
-vim.cmd.colorscheme 'ayu'
+vim.cmd.colorscheme 'gruber-darker-ayu'
 
 -- Highlight when yanking (copying) text
 vim.api.nvim_create_autocmd('TextYankPost', {
