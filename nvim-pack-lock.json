@@ -28,6 +28,10 @@
       "rev": "dd3f588bacbeb041be6facf1742e42097f62165d",
       "src": "https://github.com/lewis6991/gitsigns.nvim"
     },
+    "gruber-darker-ayu.nvim": {
+      "rev": "10ef0eed14f493c89fcbfc62f1fad29e3fd00e29",
+      "src": "https://github.com/czyrar/gruber-darker-ayu.nvim"
+    },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
